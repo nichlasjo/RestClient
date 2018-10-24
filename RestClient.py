@@ -17,6 +17,7 @@ def main(opts):
     username = opts.username
     password = opts.password
     restcmd = getattr(requests, opts.restcmd)
+    jheader = {'Content-Type': 'application/json'}
 
     try:
         if opts.jsoncfg:
@@ -24,7 +25,7 @@ def main(opts):
             r = restcmd(url, auth=HTTPDigestAuth(
                 username, password), data=jsoncfg, verify=True)
         else:
-            r = restcmd(url, auth=HTTPDigestAuth(username, password), verify=True)
+            r = restcmd(url, auth=HTTPDigestAuth(username, password), headers=jheader, verify=True)
 
         if restcmd == requests.delete:
             print("\n")
@@ -56,5 +57,4 @@ if __name__ == '__main__':
     p.add_option("-j", "--jsoncfg", dest="jsoncfg", help="jsoncfg as file")
     (opts, args) = p.parse_args()
     main(opts)
-
 
