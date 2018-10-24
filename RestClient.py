@@ -21,11 +21,13 @@ def main(opts):
 
     try:
         if opts.jsoncfg:
-            jsoncfg = json.load(io.open(opts.jsoncfg, mode="r", encoding="utf-8"))
+            jsoncfg = json.load(
+                io.open(opts.jsoncfg, mode="r", encoding="utf-8"))
             r = restcmd(url, auth=HTTPDigestAuth(
                 username, password), data=jsoncfg, verify=True)
         else:
-            r = restcmd(url, auth=HTTPDigestAuth(username, password), headers=jheader, verify=True)
+            r = restcmd(url, auth=HTTPDigestAuth(
+                username, password), headers=jheader, verify=True)
 
         if restcmd == requests.delete:
             print("\n")
@@ -37,8 +39,8 @@ def main(opts):
         else:
             r.raise_for_status()
     except Exception as e:
-            print str(e)
-            sys.exit(1)
+        print str(e)
+        sys.exit(1)
     except:
         print "Connection error"
         sys.exit(1)
@@ -57,4 +59,3 @@ if __name__ == '__main__':
     p.add_option("-j", "--jsoncfg", dest="jsoncfg", help="jsoncfg as file")
     (opts, args) = p.parse_args()
     main(opts)
-
