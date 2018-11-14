@@ -6,7 +6,7 @@ import sys
 import io
 import os
 from optparse import OptionParser
-from requests.auth import HTTPDigestAuth
+from requests.auth import HTTPBasicAuth
 
 
 def main(opts):
@@ -23,10 +23,10 @@ def main(opts):
         if opts.jsoncfg:
             jsoncfg = json.load(
                 io.open(opts.jsoncfg, mode="r", encoding="utf-8"))
-            r = restcmd(url, auth=HTTPDigestAuth(
+            r = restcmd(url, auth=HTTPBasicAuth(
                 username, password), data=jsoncfg, verify=True)
         else:
-            r = restcmd(url, auth=HTTPDigestAuth(
+            r = restcmd(url, auth=HTTPBasicAuth(
                 username, password), headers=jheader, verify=True)
 
         if restcmd == requests.delete:
