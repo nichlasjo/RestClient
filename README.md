@@ -17,6 +17,7 @@ Options:
                         get, post, patch, or delete command
   -j JSONCFG, --jsoncfg=JSONCFG
                         jsoncfg as file
+  -t, --tls-verify      tls verify
 ```
 
 ## POST
