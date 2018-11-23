@@ -39,10 +39,10 @@ def main(opts):
         else:
             r.raise_for_status()
     except Exception as e:
-        print str(e)
+        print (e)
         sys.exit(1)
     except:
-        print "Connection error"
+        print ("Connection error")
         sys.exit(1)
 
 
