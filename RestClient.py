@@ -24,10 +24,10 @@ def main(opts):
             jsoncfg = json.load(
                 io.open(opts.jsoncfg, mode="r", encoding="utf-8"))
             r = restcmd(url, auth=HTTPBasicAuth(
-                username, password), data=jsoncfg, verify=True)
+                username, password), data=jsoncfg, verify=opts.tls)
         else:
             r = restcmd(url, auth=HTTPBasicAuth(
-                username, password), headers=jheader, verify=True)
+                username, password), headers=jheader, verify=opts.tls)
 
         if restcmd == requests.delete:
             print("\n")
@@ -57,6 +57,7 @@ if __name__ == '__main__':
     p.add_option("-r", "--restcmd", dest="restcmd",
                  help="get, post, patch, or delete command")
     p.add_option("-j", "--jsoncfg", dest="jsoncfg", help="jsoncfg as file")
+    p.add_option("-t", "--tls-verify", dest="tls", action="store_false", help="tls verify")
     (opts, args) = p.parse_args()
     main(opts)
 
