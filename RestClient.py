@@ -39,7 +39,7 @@ def main(opts):
         else:
             r.raise_for_status()
     except Exception as e:
-        print (e)
+        print(e)
         print(r.text)
         sys.exit(1)
     except:
