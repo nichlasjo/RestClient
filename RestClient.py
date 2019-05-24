@@ -24,7 +24,7 @@ def main(opts):
             jsoncfg = json.load(
                 io.open(opts.jsoncfg, mode="r", encoding="utf-8"))
             r = restcmd(url, auth=HTTPBasicAuth(
-                username, password), data=jsoncfg, verify=opts.tls)
+                username, password), json=jsoncfg, verify=opts.tls)
         else:
             r = restcmd(url, auth=HTTPBasicAuth(
                 username, password), headers=jheader, verify=opts.tls)
@@ -37,6 +37,7 @@ def main(opts):
             print("\n")
             print(json.dumps(jdata, indent=4, sort_keys=True))
         else:
+            print(r.text)
             r.raise_for_status()
     except Exception as e:
         print (e)
