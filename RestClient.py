@@ -37,10 +37,10 @@ def main(opts):
             print("\n")
             print(json.dumps(jdata, indent=4, sort_keys=True))
         else:
-            print(r.text)
             r.raise_for_status()
     except Exception as e:
         print (e)
+        print(r.text)
         sys.exit(1)
     except:
         print ("Connection error")
